@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Reservation</title>
+
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!--Link to my css-->
+<link rel="stylesheet" href="../style.css">
+<!--Font Awsome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+
+<body>
+<!--navbar-->
+<nav class="navbar navbar-expand-sm bg-warning">
+  <div class="container-fluid">
+  	<a href="home" class="navbar-brand">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+		<path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+		<path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+	</svg>
+	</a>
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'home' %}"><strong>Stay.com</strong></a>
+      </li>
+	  </ul>
+	  <ul class="d-flex navbar-nav justify-content-end">
+      <li class="nav-item">
+        {% if user.is_authenticated %}
+        <a class="nav-link" href="#"><strong>{{user.username}}</strong></a>
+        {% else %}
+        <a class="nav-link" href="{% url 'signin' %}"><strong>Sign in</strong></a>
+        {% endif %}
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contactus' %}"><strong>Contact us</strong></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid p-6 text-black text-center">
+  <h2>STAY</h2>
+  <h5><i>Build your best memories with us.</i></h5>
+  <p>Stay International, Inc. is an American multinational hospitality company based in      Rockville, Maryland. The company, which is one of the newest hotel chains in the world,owns      hotel brands ranging from upscale to economy.</p>
+</div>
+  <form action="{% url 'hotel-list' %}" method='get'>
+  <div class="container mt-5">
+  <div class="row">
+  <div class="col-sm-3">
+    <div class="form-floating mb-3 mt-3">
+      <select class="form-select" id="city" name="citylist">
+        <option>Select one</option>
+        <option>Chicago</option>
+        <option>Hawaii</option>  
+        <option value="Las Vegas">Las Vegas</option>
+        <option value="Los Angeles">Los Angeles (LA)</option>
+        <option value="New York">New York (NY)</option>
+      </select>
+      <label for="city" class="form-label">Select Location:</label>
+    </div>
+</div>
+<div class="col-sm-2"><br>
+     	<label for="Check-in Date">Check-in:</label>
+  	<input type="date" id="Check-in Date" name="check-in-date" min="2022-10-01">
+</div>
+<div class="col-sm-2"><br>
+  	<label for="Check-out Date">Check-out:</label>
+  	<input type="date" id="Check-out Date" name="check-out-date" max="2025-12-31">
+</div>
+  <div class="col-sm-3">
+   <div class="form-floating mb-3 mt-3">
+      <select class="form-select" id="guest" name="guestnumber">
+        <option>Select one</option>
+        <option value='1'>1 Guest</option>
+        <option value='2'>2 Guests</option>  
+        <option value='3'>3 Guests</option>
+        <option value='4'>4 Guests</option>
+        <option value='5'>More than 4 Guests</option>
+      </select>
+      <label for="guest" class="form-label">Select the number of guests:</label>
+    </div>
+    </div>
+    <div class="col-sm-2"><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form></div>
+</div>
+</div>
+</div>
+
+<!--Slides-->
+<center>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active" data-bs-interval="5000">
+        <a href="{% url 'newyork' %}">
+        <button>
+            {% load static %}<img src={% static "home/NY.jpg" %} class="d-block " alt="New York" width="600" height="315">
+        </button></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>New York</h5>
+          <p>New Yorker , Row NYC</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="5000">
+        <a href="{% url 'hawaii' %}">
+        <button>
+            {% load static %}<img src={% static "home/Hawaii.jpg"%} class="d-block" alt="Hawaii" width="600" height="315">
+        </button></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Hawaii</h5>
+          <p>Park Shore Waikiki , Westin Princeville Ocean Resort Villa</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="5000">
+        <a href="{% url 'lasvegas' %}">
+        <button>
+            {% load static %}<img src={% static "home/Las_Vegas.jpg" %} class="d-block" alt="Las Vegas" width="600" height="315">
+        </button></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Las Vegas </h5>
+          <p>Caesars Palace , Cosmopolition</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="5000">
+        <a href="{% url 'losangeles' %}">
+        <button>
+        {% load static %}<img src={% static "home/Los_Angeles.jpg" %} class="d-block" alt="Los Angeles" width="600" height="315">
+        </button></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Los Angeles</h5>
+          <p>Dream Hollywood , Beverly Hills Plaza Hotel & Spa</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" data-bs-interval="5000">
+        <a href="{% url 'chicago' %}">
+        <button>
+              {% load static %}<img src={% static "home/Chicago.jpg" %} class="d-block" alt="Chicago" width="600" height="315">
+        </button></a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Chicago </h5>
+          <p>Ritz-Carlton , The Peninsula</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</center>
+
+<footer class="bg-warning py-3 mt-5">
+  <div class="container text-center">
+    <span>All rights reserved @2022 </span>
+  </div>
+</footer>
+<!--Bootstrap JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
